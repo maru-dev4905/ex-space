@@ -33,12 +33,38 @@ img{
 
 /* swiper-music */
 
+.intro-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+.intro-inner{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    height: max-content;
+}
 .swiper-music{
     height: 100vh;
-    background: url("../images/button/bg.png") no-repeat center / cover;
+    display: flex;
+    align-items: center;
 }
 .swiper-music .swiper{
     height: 100%;
+}
+.swiper-music-text h1{
+    width: 100%;
+}
+.swiper-music-text p{
+    width: 67.5%;
+    margin-top: 40px;
+}
+.swiper{
+    margin-top: 100px;
+}
+.swiper-slide{
+
 }
 
 /* swiper-music */
