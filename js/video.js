@@ -25,13 +25,16 @@ videoOpenBtn.click(function(){
 
     var number = videoNumber.replace(regex, "");
     number = "00"+number;
-    videoPoster = number + "_stereo.png";
-    var posterURL = "./images/thumbnail/" + videoPoster;
+    stereoVideoPoster = number + "_stereo.png";
+    ex3dVideoPoster = number + "_ex-3d.png";
+    var stereoPosterURL = "./images/thumbnail/" + stereoVideoPoster;
+    var ex3dPosterURL = "./images/thumbnail/" + ex3dVideoPoster;
 
-    popup.find("video.active").attr('poster',posterURL);
+    popup.find("video.streo-video").attr('poster',stereoPosterURL);
+    popup.find("video.ex3d-video").attr('poster',ex3dPosterURL);
 
     var streoURL = `./mp4/${number}_${videoData}_Stereo.mp4`;
-    var ex3dURL = `./mp4/${number}_${videoData}EX-3D.mp4`;
+    var ex3dURL = `./mp4/${number}_${videoData}_EX-3D.mp4`;
 
     videoNumberEl.text(POPUP_TEXT);
     videoTitleEl.text(videoNumber + videoData);
@@ -93,3 +96,34 @@ closeBtn.click(function(){
 //     var value = (100 / myVideo.duration) * myVideo.currentTime;
 //     $("#seek-bar").val(value);
 // });
+
+var popupStreoBtn = $(".popup .streo-btn");
+var popupEx3dBtn = $(".popup .ex3d-btn");
+
+popupEx3dBtn.click(function(){
+    var video = $(".video.active").get(0);
+    video.load();
+    video.pause();
+
+    popupStreoBtn.removeClass("active");
+    popupEx3dBtn.addClass("active");
+
+    $(".video").eq(0).removeClass("active start");
+    $(".video").eq(1).addClass("active");
+
+    $(".video-container").removeClass("active");
+});
+
+popupStreoBtn.click(function(){
+    var video = $(".video.active").get(0);
+    video.load();
+    video.pause();
+
+    popupEx3dBtn.removeClass("active");
+    popupStreoBtn.addClass("active");
+
+    $(".video").eq(0).addClass("active");
+    $(".video").eq(1).removeClass("active start");
+
+    $(".video-container").removeClass("active");
+});
