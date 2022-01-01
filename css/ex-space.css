@@ -286,13 +286,14 @@ img{
 }
 .popup{
     position: fixed;
-    top: 50%;
+    top: 100px;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translateX(-50%);
     width: 100%;
     max-width: 1280px;
+    height: calc(100vh - 200px);
     border-radius: 15px;
-    overflow: hidden;
+    overflow: scroll;
     background-color: #101010;
     z-index: 1000000000;
     padding: 30px;
@@ -331,6 +332,7 @@ img{
     border-radius: 10px;
     opacity: 0.6;
     transition: 0.3s ease;
+    cursor: pointer;
 }
 .video.active{
     display: block;
@@ -361,6 +363,35 @@ img{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 60px;
+}
+.popup-close-btn-container{
+    width: 100%;
+    max-width: 1280px;
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: flex-end;
+    z-index: 100000000;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+}
+.popup-close-btn-container.active{
+    opacity: 1;
+    visibility: visible;
+}
+.popup-close-btn{
+    width: 24px;
+    height: 24px;
+}
+.popup-close-btn i{
+    width: 24px;
+    height: 24px;
+    background: url("../images/button/close.png") no-repeat center / cover;
+    display: block;
 }
 
 /* popup */

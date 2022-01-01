@@ -1,5 +1,6 @@
 var dim             = $(".dim");
 var popup           = $(".popup");
+var closeBtn        = $(".popup-close-btn-container");
 
 var regex = /[^0-9]/g;
 
@@ -15,7 +16,7 @@ var videoTitleEl    = $(".popup-text strong");
 var videoPoster;
 
 videoOpenBtn.click(function(){
-    
+    closeBtn.addClass("active");
     dim.addClass("active");
     popup.addClass("active");
     
@@ -63,6 +64,7 @@ $(".video").click(function(){
 dim.click(function(){
     
     $(".video-container").removeClass("active");
+    closeBtn.removeClass("active");
     dim.removeClass("active");
     popup.removeClass("active");
 
@@ -72,6 +74,19 @@ dim.click(function(){
     $(".video.start").removeClass("start");
 
 });
+
+closeBtn.click(function(){
+    $(".video-container").removeClass("active");
+    $(this).removeClass("active");
+    dim.removeClass("active");
+    popup.removeClass("active");
+
+    var video = $(".video.active").get(0);
+    video.load();
+    video.pause();
+    $(".video.start").removeClass("start");
+
+})
 
 // $(".video").on("timeupdate", function() {
 //     var myVideo = $(this)[0];
