@@ -83,6 +83,7 @@ img{
 }
 .swiper{
     margin-top: 100px;
+    overflow-y: visible;
 }
 .swiper-slide { 
     width: 25%;
@@ -165,6 +166,10 @@ img{
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 32px;
     grid-row-gap: 70px;
+    width: 100%;
+}
+.list-container li{
+    width: 100%;
 }
 .list-container .video-open-btn{
     position: relative;
@@ -182,6 +187,12 @@ img{
 }
 .list-container .video-open-btn:hover:before{
     background: url("../images/button/btn_play_over.png") no-repeat center / cover;
+}
+.list-container .video-open-btn img{
+    display: none;
+}
+.list-container .video-open-btn img.active{
+    display: block;
 }
 .btn-title{
     padding-top: 28px;
@@ -443,3 +454,130 @@ img{
 }
 
 /* popup */
+
+@media all and (max-width:1550px){
+    .music-inner{
+        max-width: 1000px;
+    }
+    .swiper-container{
+        max-width: 1280px;
+    }
+    .swiper-slide{
+        height: 320px;
+    }
+    .swiper-music-text span{
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+    .swiper-music-text h1{
+        width: 75%;
+    }
+    .swiper-music-text p{
+        width: 85%;
+        margin-top: 20px;
+    }
+    .swiper{
+        margin-top: 50px;
+    }
+    .music-list-inner{
+        padding-bottom: 150px;
+        max-width: 1000px;
+    }
+    .btn-text{
+        font-size: 18px;
+    }
+    .list-title li{
+        font-size: 20px;
+    }
+    .list-title h2{
+        font-size: 40px;
+    }
+    
+    .popup{
+        max-width: 868px;
+    }
+    .popup-text{
+        font-size: 24px;
+    }
+    .video-kind-btn button{
+        font-size: 24px;
+    }
+    .video-kind-btn button i{
+        width: 18px;
+        height: 17px;
+        margin-right: 15px;
+    }
+    .video-kind-btn .ex3d-btn img{
+        height: 18px;
+    }
+    .video-container{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .popup-text{
+        padding: 35px 0;
+    }
+    .popup .controller{
+        height: 65px;
+        margin-bottom: 35px;
+    }
+    .video-kind-btn button{
+        height: 88px;
+        width: 188px;
+        font-size: 18px;
+    }
+    .video-kind-btn .ex3d-btn img{
+        height: 14px;
+    }
+    .video-kind-btn{
+        gap: 40px;
+    }
+    .video-container::before{
+        width: 80px;
+        height: 80px;
+    }
+    .popup-close-btn-container{
+        max-width: 868px;
+    }
+}
+@media all and (max-width:1300px){
+    .swiper-container{
+        max-width: 868px;
+    }
+    .music-inner{
+        max-width: 868px;
+    }
+    .music-list-inner{
+        max-width: 868px;
+    }
+    .list-container ul li button{
+        width: 108px;
+        height: 40px;
+    }
+    .btn-title{
+        padding: 20px 0 22px 0;
+    }
+    .btn-text{
+        font-size: 15px;
+    }
+    .list-container ul li button.streo-btn{
+        font-size: 13px;
+    }
+    .list-container ul li button.ex3d-btn img{
+        width: 40px;
+    }
+    .list-container ul li button i{
+        width: 15px;
+        height: 15px;
+    }
+    .list-title li{
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .list-title h2{
+        font-size: 34px;
+    }
+    .swiper-slide{
+        height: 217px;
+    }
+}

@@ -16,8 +16,13 @@ listEx3dBtn.click(function(){
 function checkBtnKind(el){
     if(el.hasClass(EX3D)){
         toggleBtn(el);
+        
+        el.parent().parent().siblings(".video-open-btn").find("img").eq(0).addClass("active");
+        el.parent().parent().siblings(".video-open-btn").find("img").eq(1).removeClass("active");
     }else if(el.hasClass(STREO)){
         toggleBtn(el);
+        el.parent().parent().siblings(".video-open-btn").find("img").eq(1).addClass("active");
+        el.parent().parent().siblings(".video-open-btn").find("img").eq(0).removeClass("active");
     }
 };
 
@@ -29,9 +34,10 @@ function toggleBtn(el){
     }
 
     if(el.hasClass("active")){
-        el.removeClass("active");
+        
     }else{
         el.addClass("active");
     }
     
 };
+

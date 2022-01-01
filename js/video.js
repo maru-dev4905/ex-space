@@ -15,7 +15,14 @@ var videoTitleEl    = $(".popup-text strong");
 
 var videoPoster;
 
+var currentBtn;
+
+var openWayCheck;
+
 videoOpenBtn.click(function(){
+
+    currentBtn = $(this).siblings("ul").find("button.active");
+
     closeBtn.addClass("active");
     dim.addClass("active");
     popup.addClass("active");
@@ -41,6 +48,56 @@ videoOpenBtn.click(function(){
     
     popup.find("video.streo-video source").attr('src',streoURL);
     popup.find("video.ex3d-video source").attr('src',ex3dURL);
+
+    if(currentBtn.hasClass("streo-btn")){
+        // ex3d
+        popup.find(".video-kind-btn .ex3d-btn").addClass("active");
+        popup.find(".video-kind-btn .streo-btn").removeClass("active");
+        
+    
+        popupEx3dBtn.removeClass("active");
+        popupStreoBtn.addClass("active");
+    
+        $(".video").eq(0).addClass("active");
+        $(".video").eq(1).removeClass("active start");
+    
+        $(".video-container").removeClass("active");
+
+    }else{
+        // streo
+        popup.find(".video-kind-btn .streo-btn").addClass("active");
+        popup.find(".video-kind-btn .ex3d-btn").removeClass("active");
+    
+        var video = $(".video.active").get(0);
+        video.load();
+        video.pause();
+        
+        var video = $(".video.active").get(0);
+        video.load();
+        video.pause();
+
+        popupStreoBtn.removeClass("active");
+        popupEx3dBtn.addClass("active");
+
+        $(".video").eq(0).removeClass("active start");
+        $(".video").eq(1).addClass("active");
+
+        $(".video-container").removeClass("active");
+    }
+
+    if($(this).parent(".swiper-slide").length > 0){
+        openWayCheck = "swiper";
+        
+        $(".video").eq(0).addClass("active");
+        $(".video").eq(1).removeClass("active start");
+        
+        popup.find(".video-kind-btn .streo-btn").addClass("active");
+        popup.find(".video-kind-btn .ex3d-btn").removeClass("active");
+    
+    }else{
+        openWayCheck = "list";
+    }
+    console.log(openWayCheck)
 });
 
 $(".video").click(function(){
@@ -99,6 +156,7 @@ closeBtn.click(function(){
 
 var popupStreoBtn = $(".popup .streo-btn");
 var popupEx3dBtn = $(".popup .ex3d-btn");
+var popupBtnCheck;
 
 popupEx3dBtn.click(function(){
     var video = $(".video.active").get(0);
@@ -112,9 +170,25 @@ popupEx3dBtn.click(function(){
     $(".video").eq(1).addClass("active");
 
     $(".video-container").removeClass("active");
+    
+    if(openWayCheck == "list"){
+    
+        for(var i = 0 ; i < $(".video-open-btn").length; i++){
+            if(videoData == $(".video-open-btn").eq(i).data("videoname")){
+                $(".video-open-btn").eq(i).siblings("ul").find(".ex3d-btn").addClass("active");
+                $(".video-open-btn").eq(i).siblings("ul").find(".streo-btn").removeClass("active");
+                $(".video-open-btn").eq(i).find("img").eq(0).addClass("active");
+                $(".video-open-btn").eq(i).find("img").eq(1).removeClass("active");
+            }
+        }
+    }else{
+        return false;
+    }
 });
 
 popupStreoBtn.click(function(){
+    popupBtnCheck = $(".popup .video-kind-btn button.active");
+    
     var video = $(".video.active").get(0);
     video.load();
     video.pause();
@@ -126,4 +200,19 @@ popupStreoBtn.click(function(){
     $(".video").eq(1).removeClass("active start");
 
     $(".video-container").removeClass("active");
+    
+    if(openWayCheck == "list"){
+        for(var i = 0 ; i < $(".video-open-btn").length; i++){
+            if(videoData == $(".video-open-btn").eq(i).data("videoname")){
+                $(".video-open-btn").eq(i).siblings("ul").find(".ex3d-btn").removeClass("active");
+                $(".video-open-btn").eq(i).siblings("ul").find(".streo-btn").addClass("active");
+                $(".video-open-btn").eq(i).find("img").eq(1).addClass("active");
+                $(".video-open-btn").eq(i).find("img").eq(0).removeClass("active");
+            }
+        }
+    }else{
+
+        return false;
+    }
+
 });
