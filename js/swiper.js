@@ -1,14 +1,12 @@
-const swiper = new Swiper('.swiper', {
-    // Optional parameters
-    loop: true,
-    slidesPerView: 5,
-    centeredSlides: true,
-
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  
-    // And if we need scrollbar
-  });
+var swiper = new Swiper('.swiper', {
+  loop: true,
+  centeredSlides: true,
+  slidesPerView: 'auto',
+  spaceBetween: 25,
+  slideToClickedSlide: true,
+  effect: 'coverflow',
+  coverflowEffect: {
+    rotate: 0,
+    slideShadows: false,
+  },
+});
