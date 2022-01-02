@@ -2,7 +2,7 @@ var swiper = new Swiper('.swiper', {
     loop: true,
     centeredSlides: true,
     slidesPerView: 'auto',
-    spaceBetween: 10,
+    spaceBetween: 0,
     slideToClickedSlide: true,
     effect: 'coverflow',
     coverflowEffect: {
@@ -11,6 +11,9 @@ var swiper = new Swiper('.swiper', {
     },
     breakpoints: {
       768: {
+        spaceBetween: 10,
+      },
+      425: {
         spaceBetween: 25,
       },
     },

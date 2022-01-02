@@ -693,3 +693,23 @@ img{
         width: 150px;
     }
 }
+
+@media all and (max-width:450px){
+    .swiper-slide{
+        width: 60vw;
+        height: 60vw;
+    }
+    .swiper-wrapper{
+        align-items: center;
+    }
+    .swiper-music-text h1{
+        width: 100%;
+    }
+    .swiper-music-text p{
+        width: 100%;
+        margin-top: 0;
+    }
+    .swiper{
+        margin-top: 40px;
+    }
+}
