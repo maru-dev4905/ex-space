@@ -27,12 +27,7 @@ var swiper = new Swiper('.swiper', {
     },
     on: {
       slideChange: function () {
-        for(var i = 0; i < swiperVideo.length; i++){
-          if(swiperVideo.eq(i).parent().hasClass("play")){
-            swiperVideo.eq(i).parent().removeClass("play");
-            swiperVideo.eq(i).get(0).pause();
-          }
-        }
+        $(".swiper-slide").removeClass("play");
       }
     }
 });

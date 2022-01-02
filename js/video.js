@@ -65,7 +65,7 @@ videoOpenBtn.click(function(){
 });
 
 $(".popup .video-container").click(function(){
-    var th = $(this).find("video");
+    var th = $(this).find("video.active");
 
     if(th.hasClass("start")){
         th.removeClass("start");
@@ -117,13 +117,6 @@ closeBtn.click(function(){
 
 })
 
-$(".controll-range").val(1);
-
-$(".popup .video.active").on("timeupdate", function() {
-    var myVideo = $(this)[0];
-    var value = (100 / myVideo.duration) * myVideo.currentTime;
-    $(".controll-range").val(value);
-});
 
 var popupStreoBtn = $(".popup .streo-btn");
 var popupEx3dBtn = $(".popup .ex3d-btn");
@@ -148,6 +141,7 @@ popupEx3dBtn.click(function(){
     
     $(".video-container").addClass("active");
     
+    range.val(ex.currentTime);
 });
 
 popupStreoBtn.click(function(){
@@ -158,7 +152,7 @@ popupStreoBtn.click(function(){
     ex = $(".popup .video.ex3d-video").get(0);
 
     ex.pause();
-    st.currentTime = st.currentTime;
+    st.currentTime = ex.currentTime;
     st.play();
 
     popupEx3dBtn.removeClass("active");
@@ -166,6 +160,8 @@ popupStreoBtn.click(function(){
 
 
     $(".video-container").addClass("active");
+
+    range.val(st.currentTime);
     
 });
 
@@ -175,7 +171,18 @@ var playBtn = $(".popup .play-btn");
 playBtn.click(function(){
     var th = $(this);
     var thisVideo = th.parent().siblings(".video-container").find("video.active");
-    thisVideo.get(0).pause();
+    
+    if(th.hasClass("active")){
+        th.removeClass("active");
+        thisVideo.get(0).play();
+        thisVideo.addClass("start");
+        $(".video-container").addClass("active");
+    }else{
+        th.addClass("active");
+        thisVideo.get(0).pause();
+        thisVideo.removeClass("start");
+        $(".video-container").removeClass("active");
+    }
 });
 
 var prevBtn = $(".popup .prev-btn");
@@ -197,17 +204,23 @@ prevBtn.click(function(){
     var number = stereoPosterURL.replace(regex, "");
 
     var data;
-        
+    
+    var videoNumber;
+
     var streoURL; 
     var ex3dURL; 
 
     if(number == 1){
 
+        videoNumber = $(".music-list .list-title li").eq(videoLength - 1).find("button").data("videonumber");
+        
         stereo.attr("poster",`./images/thumbnail/00${videoLength}_stereo.png`);
         ex3d.attr("poster",`./images/thumbnail/00${videoLength}_ex-3d.png`);
         
         data = $(".music-list .list-title li").eq(videoLength - 1).find("button").data("videoname");
         
+        videoTitleEl.text(videoNumber + data);
+
         streoURL = `./mp4/00${videoLength}_${data}_Stereo.mp4`;
         ex3dURL = `./mp4/00${videoLength}_${data}_EX-3D.mp4`;
         
@@ -217,12 +230,16 @@ prevBtn.click(function(){
         stereo.get(0).load();
         ex3d.get(0).load();
     }else{
+
+        videoNumber = $(".music-list .list-title li").eq(number - 2).find("button").data("videonumber");
         
         stereo.attr("poster",`./images/thumbnail/00${number - 1}_stereo.png`);
         ex3d.attr("poster",`./images/thumbnail/00${number - 1}_ex-3d.png`);
         
         data = $(".music-list .list-title li").eq(number - 2).find("button").data("videoname");
         
+        videoTitleEl.text(videoNumber + data);
+
         streoURL = `./mp4/00${number - 1}_${data}_Stereo.mp4`;
         ex3dURL = `./mp4/00${number - 1}_${data}_EX-3D.mp4`;
     
@@ -262,11 +279,15 @@ nextBtn.click(function(){
 
     if(number == videoLength){
 
+        videoNumber = $(".music-list .list-title li").eq(0).find("button").data("videonumber");
+        
         stereo.attr("poster",`./images/thumbnail/00${1}_stereo.png`);
         ex3d.attr("poster",`./images/thumbnail/00${1}_ex-3d.png`);
         
         data = $(".music-list .list-title li").eq(0).find("button").data("videoname");
         
+        videoTitleEl.text(videoNumber + data);
+
         streoURL = `./mp4/00${1}_${data}_Stereo.mp4`;
         ex3dURL = `./mp4/00${1}_${data}_EX-3D.mp4`;
         
@@ -276,10 +297,15 @@ nextBtn.click(function(){
         stereo.get(0).load();
         ex3d.get(0).load();
     }else{
+        
+        videoNumber = $(".music-list .list-title li").eq(number).find("button").data("videonumber");
+        
         stereo.attr("poster",`./images/thumbnail/00${number + 1}_stereo.png`);
         ex3d.attr("poster",`./images/thumbnail/00${number + 1}_ex-3d.png`);
         
         data = $(".music-list .list-title li").eq(number).find("button").data("videoname");
+        
+        videoTitleEl.text(videoNumber + data);
         
         streoURL = `./mp4/00${number + 1}_${data}_Stereo.mp4`;
         ex3dURL = `./mp4/00${number + 1}_${data}_EX-3D.mp4`;
@@ -295,3 +321,93 @@ nextBtn.click(function(){
     $(".video-container").removeClass("active");
     $(".popup .video").removeClass(" start");
 });
+
+var speakerBtn = $(".popup .speaker-btn");
+
+speakerBtn.click(function(){
+    var th              = $(this);
+    
+    var thisVideo       = th.parent().siblings(".video-container").find("video");
+    
+    if(th.hasClass("active")){
+        thisVideo.prop('muted',false)
+        th.removeClass("active");
+    }else{
+        thisVideo.prop('muted',true)
+        th.addClass("active");
+    }
+});
+
+
+
+var rangeCheck;
+var rangeCheck2;
+var range = $(".controll-range");
+
+var myVideo = $(".popup .video");
+
+myVideo.on("timeupdate", timeUpdate);
+
+function timeUpdate(){
+    var myVideo = $(".popup .video.active").get(0)
+    var value = (range.attr("max") / myVideo.duration) * myVideo.currentTime;
+
+    rangeCheck = "update";
+    
+    range.attr("max",myVideo.duration)
+
+    if(rangeCheck2 == "mousedown"){
+        
+        return false;
+    }else{
+        rangeCheck2 = "mouseup";
+        rangeChangeFuc(value, myVideo, rangeCheck);
+    }
+}
+
+var rangeVal;
+var currentVal;
+
+range.mousedown(function(){
+    rangeCheck2 = "mousedown";
+});
+range.mouseup(function(){
+    rangeCheck2 = "mouseup";
+});
+
+range.on('input',function(){
+    
+    var th          = $(this);
+
+    var thisVideo   = th.parent().siblings(".video-container").find("video.active");
+    
+    currentVal = $(this).val();
+
+    thisVideo = thisVideo.get(0);
+
+    rangeCheck = "clickChange";
+
+    rangeChangeFuc(currentVal, thisVideo, rangeCheck);
+})
+
+function rangeChangeFuc(value, video, check){
+     
+    if(check == "update"){
+
+        // video.currentTime = value;
+        if(rangeCheck2 == "mousedown"){
+            
+            // range.val(value);
+            
+            return false;
+        }else if(rangeCheck2 == "mouseup"){
+
+            range.val(value);
+        }
+    }else if(check == "clickChange"){
+        video.currentTime = value;
+
+        range.val(value);
+    }
+    
+}
