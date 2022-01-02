@@ -12,17 +12,43 @@ listEx3dBtn.click(function(){
     checkBtnKind($(this));
 });
 
+var video  = $(".list-video-container video");
+
+video.click(function(){
+    var thisVideo = $(this).get(0);
+
+    thisVideo.pause();
+    $(this).parent().removeClass("active");
+});
 
 function checkBtnKind(el){
     if(el.hasClass(EX3D)){
         toggleBtn(el);
+        el.parent().parent().siblings(".list-video-container").find("video").eq(1).addClass("active");
+        el.parent().parent().siblings(".list-video-container").find("video").eq(0).removeClass("active");
+
+        var st = el.parent().parent().siblings(".list-video-container").find("video").eq(0).get(0);
+        var ex = el.parent().parent().siblings(".list-video-container").find("video").eq(1).get(0);
         
-        el.parent().parent().siblings(".video-open-btn").find("img").eq(0).addClass("active");
-        el.parent().parent().siblings(".video-open-btn").find("img").eq(1).removeClass("active");
+        st.pause();
+        ex.currentTime = st.currentTime;
+        ex.play();
+
+        el.parent().parent().siblings(".list-video-container").addClass("active");
+
     }else if(el.hasClass(STREO)){
         toggleBtn(el);
-        el.parent().parent().siblings(".video-open-btn").find("img").eq(1).addClass("active");
-        el.parent().parent().siblings(".video-open-btn").find("img").eq(0).removeClass("active");
+        el.parent().parent().siblings(".list-video-container").find("video").eq(0).addClass("active");
+        el.parent().parent().siblings(".list-video-container").find("video").eq(1).removeClass("active");
+    
+        var st = el.parent().parent().siblings(".list-video-container").find("video").eq(0).get(0);
+        var ex = el.parent().parent().siblings(".list-video-container").find("video").eq(1).get(0);
+        
+        ex.pause();
+        st.currentTime = ex.currentTime;
+        st.play();
+
+        el.parent().parent().siblings(".list-video-container").addClass("active");
     }
 };
 
