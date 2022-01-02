@@ -17,8 +17,17 @@ var video  = $(".list-video-container video");
 video.click(function(){
     var thisVideo = $(this).get(0);
 
-    thisVideo.pause();
-    $(this).parent().removeClass("active");
+    if($(this).parent().hasClass("start")){
+
+        $(this).parent().removeClass("active start");
+        thisVideo.pause();
+        
+    }else{
+        $(this).parent().addClass("active start");
+        thisVideo.play();
+        
+    }
+    
 });
 
 function checkBtnKind(el){
@@ -34,12 +43,12 @@ function checkBtnKind(el){
         ex.currentTime = st.currentTime;
         ex.play();
 
-        el.parent().parent().siblings(".list-video-container").addClass("active");
+        el.parent().parent().siblings(".list-video-container").addClass("active start");
 
     }else if(el.hasClass(STREO)){
         toggleBtn(el);
         el.parent().parent().siblings(".list-video-container").find("video").eq(0).addClass("active");
-        el.parent().parent().siblings(".list-video-container").find("video").eq(1).removeClass("active");
+        el.parent().parent().siblings(".list-video-container").find("video").eq(1).removeClass("active ");
     
         var st = el.parent().parent().siblings(".list-video-container").find("video").eq(0).get(0);
         var ex = el.parent().parent().siblings(".list-video-container").find("video").eq(1).get(0);
@@ -48,7 +57,8 @@ function checkBtnKind(el){
         st.currentTime = ex.currentTime;
         st.play();
 
-        el.parent().parent().siblings(".list-video-container").addClass("active");
+        el.parent().parent().siblings(".list-video-container").addClass("active start");
+
     }
 };
 

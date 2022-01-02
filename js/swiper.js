@@ -1,3 +1,6 @@
+var swiperVideo = $(".swiper-slide video");
+
+
 var swiper = new Swiper('.swiper', {
     loop: true,
     centeredSlides: true,
@@ -22,4 +25,31 @@ var swiper = new Swiper('.swiper', {
       delay: 2000,
       disableOnInteraction: true
     },
+    on: {
+      slideChange: function () {
+        for(var i = 0; i < swiperVideo.length; i++){
+          if(swiperVideo.eq(i).parent().hasClass("play")){
+            swiperVideo.eq(i).parent().removeClass("play");
+            swiperVideo.eq(i).get(0).pause();
+          }
+        }
+      }
+    }
+});
+
+swiperVideo.click(function(){
+    var th = $(this);
+    
+    if(th.parent().hasClass("play")){
+        th.parent().removeClass("play");
+        th.get(0).pause();
+        swiper.autoplay.start();
+
+    }else{
+        th.parent().addClass("play");
+        th.get(0).play();
+        swiper.autoplay.stop();
+    
+    }
+    
 });

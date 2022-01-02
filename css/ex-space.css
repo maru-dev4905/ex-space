@@ -94,20 +94,27 @@ img{
 .swiper-slide { 
     width: 25%;
     height: 390px; 
+    opacity: 0.3;
+    overflow: hidden;
+    position: relative;
 }
-.swiper-slide button{
-    height: 100%;
-}
-.swiper-slide img{
+.swiper-slide video{
+    width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.swiper-slide .video-open-btn{
-    opacity: 0.5;
+.swiper-slide video{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scale(0.6);
     transition: 0.3s ease;
-    transform: scale(0.6);
+    cursor: pointer;
 }
-.swiper-slide .video-open-btn::before{
+.swiper-slide.play::before{
+    transform: translate(-50%,-50%) scale(1.15);
+    opacity: 0;
+}
+.swiper-slide::before{
     content: "";
     width: 100px;
     height: 100px;
@@ -117,21 +124,24 @@ img{
     left: 50%;
     transform: translate(-50%,-50%);
     transition: 0.3s ease;
+    z-index: 1000;
 }
-.swiper-slide .video-open-btn:hover{
-    opacity: 1;
-}
-.swiper-slide .video-open-btn:hover::before{
+.swiper-slide:hover::before{
     background: url("../images/button/btn_play_over.png") no-repeat center / cover;
 }
-.swiper-slide.swiper-slide-prev .video-open-btn,
-.swiper-slide.swiper-slide-next .video-open-btn{
+.swiper-slide.swiper-slide-prev,
+.swiper-slide.swiper-slide-next{
     opacity: 0.8;
-    transform: scale(0.8);
 }
-.swiper-slide.swiper-slide-active .video-open-btn{
+.swiper-slide.swiper-slide-prev video,
+.swiper-slide.swiper-slide-next video{
+    transform: translateX(-50%) scale(0.8);
+}
+.swiper-slide.swiper-slide-active{
     opacity: 1;
-    transform: scale(1);
+}
+.swiper-slide.swiper-slide-active video{
+    transform: translateX(-50%) scale(1);
 }
 
 /* swiper-music */
@@ -140,6 +150,7 @@ img{
 
 .music-list{
     background-color: #000;
+    padding-top: 100px;
 }
 .music-list-inner{
     width: 100%;
@@ -162,6 +173,8 @@ img{
     font-weight: 400;
     color: #666;
     margin-bottom: 24px;
+    width: 100%;
+    text-align: right;
 }
 .list-title li:last-child{
     margin-bottom: 0;
@@ -176,6 +189,9 @@ img{
 }
 .list-container li{
     width: 100%;
+}
+.list-container li li{
+    width: max-content;
 }
 .list-container .list-video-container{
     position: relative;

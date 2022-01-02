@@ -100,21 +100,17 @@ videoOpenBtn.click(function(){
     console.log(openWayCheck)
 });
 
-$(".video").click(function(){
+$(".swiper-slide .video").click(function(){
     var video = $(this).get(0);
 
     if($(this).hasClass("start")){
 
-        video.load();
         $(".video-container").removeClass("active");
         $(this).removeClass("start");
-        $(this).addClass("stop");
         video.pause();
 
     }else{
-        video.load();
         $(".video-container").addClass("active");
-        $(this).removeClass("stop");
         $(this).addClass("start");
         video.play();
         
