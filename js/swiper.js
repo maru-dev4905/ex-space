@@ -1,4 +1,4 @@
-var swiperVideo = $(".swiper-slide video");
+var swiperVideo = $(".swiper-slide");
 
 
 var swiper = new Swiper('.swiper', {
@@ -38,7 +38,7 @@ var swiper = new Swiper('.swiper', {
 });
 
 swiperVideo.click(function(){
-    var th = $(this);
+    var th = $(this).find("video");
     
     if(th.parent().hasClass("play")){
         th.parent().removeClass("play");

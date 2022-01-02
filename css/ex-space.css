@@ -35,7 +35,12 @@ img{
     background-color: #000;
 }
 
-
+.pc{
+    display: block;
+}
+.mo{
+    display: none;
+}
 
 /* swiper-music */
 
@@ -97,6 +102,7 @@ img{
     opacity: 0.3;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
 }
 .swiper-slide video{
     width: 100%;
@@ -116,8 +122,8 @@ img{
 }
 .swiper-slide::before{
     content: "";
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     background: url("../images/button/btn_play.png") no-repeat center / cover;
     position: absolute;
     top: 50%;
@@ -156,7 +162,7 @@ img{
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
-    padding-bottom: 320px;
+    padding-bottom: 160px;
 }
 .list-title{
     display: flex;
@@ -175,6 +181,10 @@ img{
     margin-bottom: 24px;
     width: 100%;
     text-align: right;
+    transition: 0.3s ease;
+}
+.list-title li button:hover{
+    color: #fff;
 }
 .list-title li:last-child{
     margin-bottom: 0;
@@ -270,7 +280,7 @@ img{
 }
 .list-container ul li button{
     width: 156px;
-    height: 56px;
+    height: 60px;
     background: url("../images/button/btn_line.png") no-repeat center / 100%;
     display: flex;
     justify-content: center;
@@ -338,7 +348,7 @@ img{
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 1280px;
+    max-width: 768px;
     height: calc(100vh - 200px);
     border-radius: 15px;
     overflow: scroll;
@@ -348,7 +358,7 @@ img{
     transition: 0.3s ease;
     opacity: 0;
     visibility: hidden;
-    padding-bottom: 76px;
+    padding-bottom: 26px;
 }
 .popup.active{
     opacity: 1;
@@ -357,12 +367,13 @@ img{
 .video-container{
     width: 100%;
     position: relative;
+    cursor: pointer;
 }
 .video-container::before{
     content: "";
-    width: 120px;
-    height: 120px;
-    background: url("../images/button/btn_play_over.png") no-repeat center / cover;
+    width: 100px;
+    height: 100px;
+    background: url("../images/button/btn_play.png") no-repeat center / cover;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -370,6 +381,9 @@ img{
     opacity: 1;
     transition: 0.5s ease;
     z-index: 1000;
+}
+.video-container:hover::before{
+    background: url("../images/button/btn_play_over.png") no-repeat center / cover;
 }
 .video-container.active::before{
     transform: translate(-50%,-50%) scale(1.15);
@@ -393,11 +407,11 @@ img{
     opacity: 1;
 }
 .popup-text{
-    padding: 60px 0;
+    padding: 30px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 36px;
+    font-size: 22px;
     color: #fff;
 }
 .popup-text h3{
@@ -408,18 +422,18 @@ img{
     font-weight: 800;
 }
 .popup .controller{
-    width: calc(100% - 80px);
-    height: 95px;
+    width: 100%;
+    height: 60px;
     margin: 0 auto;
     background-color: #11111b;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 .popup-close-btn-container{
     width: 100%;
-    max-width: 1280px;
+    max-width: 768px;
     position: fixed;
     top: 60px;
     left: 50%;
@@ -450,26 +464,30 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 76px;
+    gap: 40px;
 }
 .video-kind-btn button{
-    width: 296px;
-    height: 96px;
-    background: url("../images/button/btn_line_on.png") no-repeat center / 100%;
+    width: 180px;
+    height: 60px;
+    background: url("../images/button/btn_line.png") no-repeat center / 100% 100%;
+    transition: 0.3s ease;
+}
+.video-kind-btn button.active{
+    background: url("../images/button/btn_line_on.png") no-repeat center / 100% 100%;
 }
 .video-kind-btn button{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
+    font-size: 16px;
     color: #fff;
     font-weight: 600;
 }
 .video-kind-btn button i{
-    width: 22px;
-    height: 22px;
+    width: 15px;
+    height: 15px;
     background: url("../images/button/check_grey.png") no-repeat center / cover;
-    margin-right: 26px;
+    margin-right: 14px;
     display: block;
     transition: 0.3s ease;
 }
@@ -480,8 +498,67 @@ img{
     background: url("../images/button/check_red.gif") no-repeat center / cover;
 }
 .video-kind-btn .ex3d-btn img{
-    height: 23px;
+    height: 14px;
     width: auto;
+}
+.controll-range{
+    width: 400px;
+    height: 25px;
+    margin: 0 20px;
+    -webkit-appearance: none; 
+    background: transparent;
+    background: url("../images/button/bar.png") no-repeat center / cover;
+}
+.controll-range:focus { 
+    outline: none; 
+}
+.controll-range::-webkit-slider-thumb { 
+    -webkit-appearance: none; 
+    width: 2px;
+    height: 25px;
+    background: url("../images/icon/svg/bar_icon_6.svg") no-repeat center / cover;
+}
+.controll-range::-ms-track { 
+    width: 100%; 
+    height: 100%;
+    cursor: pointer; 
+    background: transparent; 
+    border-color: transparent; 
+    color: transparent; 
+}
+
+.play-btn i{
+    display: block;
+    width: 18px;
+    height: 20px;
+    background: url("../images/icon/svg/icon_2.svg") no-repeat center / cover;
+}
+.speaker-btn i{
+    display: block;
+    width: 23px;
+    height: 18px;
+    background: url("../images/icon/svg/icon_1.svg") no-repeat center / cover;
+}
+.prev-btn i{
+    display: block;
+    width: 17px;
+    height: 18px;
+    background: url("../images/icon/svg/icon_3.svg") no-repeat center / cover;
+    margin-left: 20px;
+}
+.next-btn i{
+    display: block;
+    width: 17px;
+    height: 18px;
+    background: url("../images/icon/svg/icon_4.svg") no-repeat center / cover;
+    margin-left: 20px;
+}
+.full-btn i{
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url("../images/icon/svg/icon_5.svg") no-repeat center / cover;
+    margin-left: 20px;
 }
 
 /* popup */
@@ -517,7 +594,7 @@ img{
     .btn-text{
         font-size: 18px;
     }
-    .list-title li{
+    .list-title li button{
         font-size: 20px;
     }
     .list-title h2{
@@ -601,7 +678,7 @@ img{
         width: 15px;
         height: 15px;
     }
-    .list-title li{
+    .list-title li button{
         font-size: 20px;
         margin-bottom: 15px;
     }
@@ -611,7 +688,7 @@ img{
     .swiper-slide{
         height: 217px;
     }
-    .swiper-slide .video-open-btn::before{
+    .swiper-slide::before{
         width: 60px;
         height: 60px;
     }
@@ -637,7 +714,7 @@ img{
     .list-container{
         grid-template-columns: repeat(2, 1fr);
     }
-    .list-title li{
+    .list-title li button{
         font-size: 16px;
     }
     .popup{
@@ -683,7 +760,7 @@ img{
     .swiper-music-text span{
         font-size: 13px;
     }
-    .list-title li{
+    .list-title li button{
         font-size: 14px;
         margin-bottom: 10px;
     }
@@ -699,15 +776,31 @@ img{
     .list-container{
         grid-template-columns: 1fr;
     }
-    .list-container ul{
-        justify-content: space-between;
-    }
     .list-container ul li{
         width: max-content;
     }
     .list-container ul li button{
-        width: 150px;
+        width: 105px;
     }
+    .music-list-inner{
+        padding-bottom: 100px;
+    }
+    
+    .pc{
+        display: none;
+    }
+    .mo{
+        display: block;
+    }
+    .swiper-music-text h1{
+        width: 75%;
+    }
+    .swiper-music-text p{
+        width: 100%;
+        margin-top: 20px;
+        transform: none;
+    }
+
 }
 
 @media all and (max-width:450px){
@@ -718,14 +811,15 @@ img{
     .swiper-wrapper{
         align-items: center;
     }
-    .swiper-music-text h1{
-        width: 100%;
-    }
-    .swiper-music-text p{
-        width: 100%;
-        margin-top: 0;
-    }
     .swiper{
         margin-top: 40px;
+    }
+    .list-container{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .list-container ul{
+        justify-content: center;
+        gap: 15px;
     }
 }
