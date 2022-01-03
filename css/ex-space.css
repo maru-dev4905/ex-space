@@ -108,6 +108,10 @@ img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: none;
+}
+.swiper-slide video.active{
+    display: block;
 }
 .swiper-slide video{
     position: absolute;
@@ -344,12 +348,12 @@ img{
 }
 .popup{
     position: fixed;
-    top: 100px;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%,-50%);
     width: 100%;
     max-width: 768px;
-    height: calc(100vh - 200px);
+    height: max-content;
     border-radius: 15px;
     overflow: scroll;
     background-color: #101010;
@@ -419,7 +423,7 @@ img{
     margin-right: 18px;
 }
 .popup-text strong{
-    font-weight: 800;
+    font-weight: 600;
 }
 .popup .controller{
     width: 100%;
@@ -435,7 +439,7 @@ img{
     width: 100%;
     max-width: 768px;
     position: fixed;
-    top: 60px;
+    top: 3.5%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -615,7 +619,7 @@ img{
     }
     
     .popup-text{
-        font-size: 24px;
+        font-size: 20px;
     }
     .video-kind-btn button{
         font-size: 24px;
@@ -653,7 +657,8 @@ img{
         height: 80px;
     }
     .popup-close-btn-container{
-        max-width: 868px;
+        max-width: 768px;
+        top: 7.5%;
     }
 }
 @media all and (max-width:1300px){
@@ -728,7 +733,6 @@ img{
     .popup{
         max-width: calc(100vw - 50px);
         height: max-content;
-        padding-bottom: 100px;
     }
     .video-container{
         width: 100%;
@@ -740,7 +744,7 @@ img{
         width: 300px;
     }
     .popup-text{
-        font-size: 14px;
+        font-size: 16px;
         padding: 20px 0;
     }
     .popup .controller{
@@ -753,6 +757,35 @@ img{
     }
     .video-kind-btn{
         gap: 20px;
+    }
+    .play-btn i{
+        width: 14px;
+        height: 16px;
+    }
+    .speaker-btn i{
+        width: 19px;
+        height: 16px;
+    }
+    .prev-btn i{
+        width: 13px;
+        height: 14px;
+        margin-left: 10px;
+    }
+    .next-btn i{
+        width: 13px;
+        height: 14px;
+        margin-left: 10px;
+    }
+    .video-kind-btn button{
+        width: 140px;    
+        height: 45px;
+    }
+    .popup{
+        top: 10%;
+        transform: translateX(-50%);
+    }
+    .popup-close-btn-container{
+        top: 5%
     }
 }
 
@@ -790,28 +823,6 @@ img{
     .controll-range{
         margin: 0 10px;
     }
-    .play-btn i{
-        width: 14px;
-        height: 16px;
-    }
-    .speaker-btn i{
-        width: 19px;
-        height: 14px;
-    }
-    .prev-btn i{
-        width: 13px;
-        height: 14px;
-        margin-left: 10px;
-    }
-    .next-btn i{
-        width: 13px;
-        height: 14px;
-        margin-left: 10px;
-    }
-    .video-kind-btn button{
-        width: 140px;    
-        height: 45px;
-    }
 }
 
 @media all and (max-width:550px){
@@ -835,15 +846,19 @@ img{
         display: block;
     }
     .swiper-music-text h1{
-        width: 75%;
+        width: 90%;
     }
     .swiper-music-text p{
-        width: 100%;
+        width: 75%;
         margin-top: 20px;
         transform: none;
     }
     .video-kind-btn{
         gap: 10px;
+    }
+    .popup-text{
+        font-size: 14px;
+        padding: 20px 0;
     }
 }
 
@@ -871,5 +886,13 @@ img{
     }
     .popup-text{
         font-size: 12px;
+    }
+    .controll-range{
+        width: 200px;
+    }
+}
+@media all and (max-width:325px){
+    .popup-text{
+        font-size: 10px;
     }
 }
