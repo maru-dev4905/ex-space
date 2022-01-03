@@ -1,5 +1,6 @@
 var swiperVideo = $(".swiper-slide");
 
+
 var swiper = new Swiper('.swiper', {
     loop: true,
     centeredSlides: true,
@@ -32,15 +33,15 @@ var swiper = new Swiper('.swiper', {
 });
 
 swiperVideo.click(function(){
-    var th = $(this).find("video.active");
+    var th = $(this).find("video");
     
-    if(th.parent().parent().hasClass("play")){
-        th.parent().parent().removeClass("play");
+    if(th.parent().hasClass("play")){
+        th.parent().removeClass("play");
         th.get(0).pause();
         swiper.autoplay.start();
 
     }else{
-        th.parent().parent().addClass("play");
+        th.parent().addClass("play");
         th.get(0).play();
         swiper.autoplay.stop();
     
